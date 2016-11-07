@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// TODO:
+// - Completely fucks up if target doesn't start at Vector3.zero
+// - Have it more dynamic (e.g. camera zooms out when moving character moves towards it)
+
+[DisallowMultipleComponent]
 public class CameraController : MonoBehaviour
 {
 	GameObject cameraTarget;
@@ -57,7 +62,7 @@ public class CameraController : MonoBehaviour
 		{
 			transform.position = lastPosition; 
 		}
-		transform.LookAt(cameraTarget.transform.position);
+		transform.LookAt(cameraTarget.transform.position + new Vector3(0, offsetHeight - 1, 0));
 	}
 
 	void LateUpdate()
