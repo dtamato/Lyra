@@ -38,18 +38,7 @@ public class CameraController : MonoBehaviour
 				following = true;
 			}
 		} 
-		if(Input.GetKey(KeyCode.Q))
-		{
-			rotate = -1;
-		} 
-		else if(Input.GetKey(KeyCode.E))
-		{
-			rotate = 1;
-		} 
-		else
-		{
-			rotate = 0;
-		}
+
 		if(following)
 		{
 			offset = Quaternion.AngleAxis(rotate * rotateSpeed, Vector3.up) * offset;
@@ -63,6 +52,21 @@ public class CameraController : MonoBehaviour
 			transform.position = lastPosition; 
 		}
 		transform.LookAt(cameraTarget.transform.position + new Vector3(0, offsetHeight - 1, 0));
+	}
+
+	public void RotateLeft () {
+
+		rotate = -1;
+	}
+
+	public void RotateRight () {
+
+		rotate = 1;
+	}
+
+	public void RotateNone () {
+
+		rotate = 0;
 	}
 
 	void LateUpdate()

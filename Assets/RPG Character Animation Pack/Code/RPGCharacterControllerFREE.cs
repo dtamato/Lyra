@@ -59,7 +59,7 @@ public class RPGCharacterControllerFREE : MonoBehaviour
 	Vector3 newVelocity;
 
 	//Weapon and Shield
-	private Weapon weapon;
+	private Weapon weapon = 0;
 	int rightWeapon = 0;
 	int leftWeapon = 0;
 	bool isRelax = false;
