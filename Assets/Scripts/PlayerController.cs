@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 
 	//jumping variables
 	public float gravity = -9.8f;
-	bool canJump;
+    public bool canJump;
 	bool isJumping = false;
 	bool isGrounded;
 	public float jumpSpeed = 12;
@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour {
 	bool isRolling = false;
 	public float rollduration;
 
-	//movement variables
-	bool canMove = true;
+    //movement variables
+    bool canMove = true;
 	public float walkSpeed = 1.35f;
 	float moveSpeed;
 	public float runSpeed = 6f;
@@ -83,7 +83,16 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
-
+        if(ConversationManager.Instance._GetTalking())
+        {
+            canMove = false;
+            rb.isKinematic = true;
+        }
+        else
+        {
+            canMove = true;
+            rb.isKinematic = false;
+        }
 //		//make sure there is animator on character
 //		if(animator)
 //		{
