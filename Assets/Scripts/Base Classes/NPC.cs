@@ -47,7 +47,7 @@ public class NPC : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
             ConversationManager.Instance.pressToTalk.text = "";
             player.canJump = true;
@@ -57,7 +57,7 @@ public class NPC : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
             triggerStay = true;
             player.canJump = false;
