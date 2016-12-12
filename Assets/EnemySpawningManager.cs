@@ -19,7 +19,8 @@ public class EnemySpawningManager : MonoBehaviour {
                 GameObject spawnedEnemy = Instantiate(enemy, waypoints[i].transform.position, Quaternion.identity) as GameObject;
                 Debug.Log(spawnedEnemy);
             }
-            Destroy(gameObject.GetComponent<BoxCollider>());
+            //Destroy(gameObject.GetComponent<BoxCollider>());
+			this.GetComponent<BoxCollider>().enabled = false;
         }
     }
 }

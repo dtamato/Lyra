@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour {
 	bool isJumping = false;
 	bool isGrounded;
 	public float jumpSpeed = 12;
-	public float doublejumpSpeed = 12;
-	bool doublejumping = true;
-	bool canDoubleJump = false;
-	bool isDoubleJumping = false;
-	bool doublejumped = false;
+//	public float doublejumpSpeed = 12;
+//	bool doublejumping = true;
+//	bool canDoubleJump = false;
+//	bool isDoubleJumping = false;
+//	bool doublejumped = false;
 	bool isFalling;
 	bool startFall;
 	float fallingVelocity = -1f;
@@ -318,13 +318,13 @@ public class PlayerController : MonoBehaviour {
 		if(Physics.Raycast((transform.position + offset), -Vector3.up, out hit, 100f))
 		{
 			distanceToGround = hit.distance;
-			if(distanceToGround < threshold)
+			if(distanceToGround < threshold && rb.velocity.y <= 0)
 			{
 				isGrounded = true;
 				canJump = true;
 				startFall = false;
-				doublejumped = false;
-				canDoubleJump = false;
+//				doublejumped = false;
+//				canDoubleJump = false;
 				isFalling = false;
 				if(!isJumping) 
 				{
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if(!isGrounded){
 			
-			canDoubleJump = true;
+			//canDoubleJump = true;
 			canJump = false;
 
 			if(isFalling)
@@ -356,13 +356,13 @@ public class PlayerController : MonoBehaviour {
 					startFall = true;
 				}
 			}
-			if(canDoubleJump && doublejumping && Input.GetButtonDown("Jump") && !doublejumped && isFalling)
-			{
-				// Apply the current movement to launch velocity
-				rb.velocity += doublejumpSpeed * Vector3.up;
-				animator.SetInteger("Jumping", 3);
-				doublejumped = true;
-			}
+//			if(canDoubleJump && doublejumping && Input.GetButtonDown("Jump") && !doublejumped && isFalling)
+//			{
+//				// Apply the current movement to launch velocity
+//				rb.velocity += doublejumpSpeed * Vector3.up;
+//				animator.SetInteger("Jumping", 3);
+//				doublejumped = true;
+//			}
 		}
 	}
 
@@ -694,106 +694,106 @@ public class PlayerController : MonoBehaviour {
 
 	#region GUI
 
-	void OnGUI()
-	{
-		if(!isDead)
-		{
-			if(canAction && !isRelax)
-			{
-				if(isGrounded)
-				{
-					if(!isBlocking)
-					{
-						if(!isBlocking)
-						{
-							if(GUI.Button(new Rect(25, 15, 100, 30), "Roll Forward"))
-							{
-								targetDashDirection = transform.forward;
-								StartCoroutine(_Roll(1));
-							}
-							if(GUI.Button(new Rect(130, 15, 100, 30), "Roll Backward"))
-							{
-								targetDashDirection = -transform.forward;
-								StartCoroutine(_Roll(3));
-							}
-							if(GUI.Button(new Rect(25, 45, 100, 30), "Roll Left"))
-							{
-								targetDashDirection = -transform.right;
-								StartCoroutine(_Roll(4));
-							}
-							if(GUI.Button(new Rect(130, 45, 100, 30), "Roll Right"))
-							{
-								targetDashDirection = transform.right;
-								StartCoroutine(_Roll(2));
-							}
-							//ATTACK LEFT
-							if(GUI.Button(new Rect(25, 85, 100, 30), "Attack L"))
-							{
-								Attack(1);
-							}
-							//ATTACK RIGHT
-							if(GUI.Button(new Rect(130, 85, 100, 30), "Attack R"))
-							{
-								Attack(2);
-							}
-							if(weapon == Weapon.UNARMED) 
-							{
-								if(GUI.Button (new Rect (25, 115, 100, 30), "Left Kick")) 
-								{
-									AttackKick (1);
-								}
-								if(GUI.Button (new Rect (130, 115, 100, 30), "Right Kick")) 
-								{
-									AttackKick (2);
-								}
-							}
-							if(GUI.Button(new Rect(30, 240, 100, 30), "Get Hit"))
-							{
-								GetHit();
-							}
-						}
-					}
-				}
-				if(canJump || canDoubleJump)
-				{
-					if(isGrounded)
-					{
-						if(GUI.Button(new Rect(25, 165, 100, 30), "Jump"))
-						{
-							if(canJump && isGrounded)
-							{
-								StartCoroutine(_Jump());
-							}
-						}
-					} 
-					else
-					{
-						if(GUI.Button(new Rect(25, 165, 100, 30), "Double Jump"))
-						{
-							if(canDoubleJump && !isDoubleJumping)
-							{
-								StartCoroutine(_Jump());
-							}
-						}
-					}
-				}
-				if(!isBlocking && isGrounded)
-				{
-					if(GUI.Button(new Rect(30, 270, 100, 30), "Death"))
-					{
-						StartCoroutine(_Death());
-					}
-				}
-			}
-		}
-		if(isDead)
-		{
-			if(GUI.Button(new Rect(30, 270, 100, 30), "Revive"))
-			{
-				StartCoroutine(_Revive());
-			}
-		}
-	}
+//	void OnGUI()
+//	{
+//		if(!isDead)
+//		{
+//			if(canAction && !isRelax)
+//			{
+//				if(isGrounded)
+//				{
+//					if(!isBlocking)
+//					{
+//						if(!isBlocking)
+//						{
+//							if(GUI.Button(new Rect(25, 15, 100, 30), "Roll Forward"))
+//							{
+//								targetDashDirection = transform.forward;
+//								StartCoroutine(_Roll(1));
+//							}
+//							if(GUI.Button(new Rect(130, 15, 100, 30), "Roll Backward"))
+//							{
+//								targetDashDirection = -transform.forward;
+//								StartCoroutine(_Roll(3));
+//							}
+//							if(GUI.Button(new Rect(25, 45, 100, 30), "Roll Left"))
+//							{
+//								targetDashDirection = -transform.right;
+//								StartCoroutine(_Roll(4));
+//							}
+//							if(GUI.Button(new Rect(130, 45, 100, 30), "Roll Right"))
+//							{
+//								targetDashDirection = transform.right;
+//								StartCoroutine(_Roll(2));
+//							}
+//							//ATTACK LEFT
+//							if(GUI.Button(new Rect(25, 85, 100, 30), "Attack L"))
+//							{
+//								Attack(1);
+//							}
+//							//ATTACK RIGHT
+//							if(GUI.Button(new Rect(130, 85, 100, 30), "Attack R"))
+//							{
+//								Attack(2);
+//							}
+//							if(weapon == Weapon.UNARMED) 
+//							{
+//								if(GUI.Button (new Rect (25, 115, 100, 30), "Left Kick")) 
+//								{
+//									AttackKick (1);
+//								}
+//								if(GUI.Button (new Rect (130, 115, 100, 30), "Right Kick")) 
+//								{
+//									AttackKick (2);
+//								}
+//							}
+//							if(GUI.Button(new Rect(30, 240, 100, 30), "Get Hit"))
+//							{
+//								GetHit();
+//							}
+//						}
+//					}
+//				}
+//				if(canJump || canDoubleJump)
+//				{
+//					if(isGrounded)
+//					{
+//						if(GUI.Button(new Rect(25, 165, 100, 30), "Jump"))
+//						{
+//							if(canJump && isGrounded)
+//							{
+//								StartCoroutine(_Jump());
+//							}
+//						}
+//					} 
+//					else
+//					{
+//						if(GUI.Button(new Rect(25, 165, 100, 30), "Double Jump"))
+//						{
+//							if(canDoubleJump && !isDoubleJumping)
+//							{
+//								StartCoroutine(_Jump());
+//							}
+//						}
+//					}
+//				}
+//				if(!isBlocking && isGrounded)
+//				{
+//					if(GUI.Button(new Rect(30, 270, 100, 30), "Death"))
+//					{
+//						StartCoroutine(_Death());
+//					}
+//				}
+//			}
+//		}
+//		if(isDead)
+//		{
+//			if(GUI.Button(new Rect(30, 270, 100, 30), "Revive"))
+//			{
+//				StartCoroutine(_Revive());
+//			}
+//		}
+//	}
 
 	#endregion
 }
