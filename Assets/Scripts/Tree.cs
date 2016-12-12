@@ -12,7 +12,7 @@ public class Tree : MonoBehaviour {
 
 	void Update () {
 
-		if(Input.GetKeyDown(KeyCode.Space) && playerIn) {
+		if(Input.GetKeyDown(KeyCode.G) && playerIn) {
 
 			growing = true;
 		}

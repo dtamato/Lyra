@@ -270,8 +270,8 @@ public class PlayerController : MonoBehaviour {
 
 	void CameraRelativeMovement(){
 
-		float inputDashVertical = Input.GetAxisRaw("DashVertical");
-		float inputDashHorizontal = Input.GetAxisRaw("DashHorizontal");
+		float inputDashVertical = Input.GetAxisRaw("Vertical");
+		float inputDashHorizontal = Input.GetAxisRaw("Horizontal");
 		float inputHorizontal = Input.GetAxisRaw("Horizontal");
 		float inputVertical = Input.GetAxisRaw("Vertical");
 
